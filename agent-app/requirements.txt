@@ -1,0 +1,7 @@
+openai-agents==0.24.0
+mlflow[databricks]>=3.17,<4
+databricks-agents
+databricks-sdk>=0.122
+fastapi
+uvicorn
+fastmcp>=4.1,<5

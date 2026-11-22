@@ -1,0 +1,30 @@
+# Databricks Apps runtime configuration for the NFS MCP server.
+# https://docs.databricks.com/aws/en/dev-tools/databricks-apps/app-runtime
+#
+# Runs the server.app module. app.py uses absolute package imports
+# (server.*), so src/ must be on PYTHONPATH. When it sees
+# DATABRICKS_APP_PORT, app.py serves streamable HTTP on 0.0.0.0:<port>:
+#   https://<app-url>/mcp
+#   https://<app-url>/health
+#
+# Dependencies are installed from requirements.txt in this folder.
+command:
+  - python
+  - -m
+  - server.app
+
+env:
+  - name: PYTHONPATH
+    value: src
+  # PostGIS gold layer (Lakebase project nfs-aviation-postgis, branch
+  # production, database databricks_postgres, schema aviation). Add the
+  # project as a "Database" (Lakebase Autoscaling) app resource so the app's
+  # service principal can mint OAuth database credentials; Databricks then
+  # also sets PGHOST/PGDATABASE/PGUSER. The SP's Postgres role has read-only
+  # SELECT on schema aviation (granted by the project owner).
+  - name: LAKEBASE_PROJECT_ID
+    value: nfs-aviation-postgis
+  - name: LAKEBASE_BRANCH_ID
+    value: production
+  - name: LAKEBASE_ENDPOINT_ID
+    value: primary

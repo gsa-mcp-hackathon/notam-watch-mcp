@@ -1,0 +1,8 @@
+# Dependencies of the ingestion jobs (each Databricks job's serverless
+# environment lists the subset it needs). Not used by the MCP server app.
+pydantic>=2
+pydantic-settings>=2.0.0
+databricks-sdk>=0.122.0
+requests>=2.32.0
+solace-pubsubplus>=1.11.0
+psycopg[binary]>=3.2

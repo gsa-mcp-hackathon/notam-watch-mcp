@@ -1,0 +1,6 @@
+# Same rules as the repository root; this app's own modules are first-party
+# (the app runs with this folder as its working directory).
+extend = "../pyproject.toml"
+
+[lint.isort]
+known-first-party = ["agent", "app", "evaluation", "prompts"]

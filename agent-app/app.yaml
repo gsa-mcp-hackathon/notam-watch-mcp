@@ -1,0 +1,14 @@
+command:
+  - python
+  - app.py
+env:
+  - name: AGENT_MODEL
+    valueFrom: model   # serving endpoint name from the app's 'model' resource
+  - name: MCP_SERVER_URL
+    value: https://<your-mcp-app-host>/mcp
+  - name: AGENT_MAX_TURNS
+    value: "8"
+  - name: MLFLOW_TRACKING_URI
+    value: databricks
+  - name: MLFLOW_EXPERIMENT_ID
+    valueFrom: experiment   # experiment id from the app's 'experiment' resource

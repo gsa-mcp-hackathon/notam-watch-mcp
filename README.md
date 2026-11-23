@@ -361,3 +361,10 @@ of continually adding new rules as previously unseen data patterns appeared.
 MCP provides a path to accelerate that modernization: keep the deterministic
 aviation analysis in reusable, testable tools while allowing different AI
 clients to ask operational questions in everyday language.
+
+## License
+
+The Notam Watch project code, including the code that retrieves FAA data, is
+available under the [MIT License](LICENSE). This license does not grant rights to
+FAA data obtained through SWIM or the NOTAM Management Service (NMS), or to
+third-party materials. Those remain subject to their applicable terms.

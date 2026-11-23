@@ -1,4 +1,4 @@
-# NFS Airspace Watch (Databricks App)
+# Notam Watch (Databricks App)
 
 An operational aviation workspace backed by the `mcp-nfs` MCP server. It pairs
 a live map and priority NOTAM queue with an analyst assistant that filters the

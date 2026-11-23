@@ -1,4 +1,4 @@
-# NFS Airspace Watch
+# Notam Watch
 
 **An MCP server and analyst workspace that turns FAA flight and NOTAM data
 into prioritized, plain-language aviation safety information.**
@@ -14,7 +14,7 @@ restrictions, unmanned aircraft activity, navigation outages, and other
 operational hazards. They are essential, but the volume, abbreviations, and lack
 of flight-specific context can make the most important notice difficult to find.
 
-NFS Airspace Watch uses the **Model Context Protocol (MCP)** to connect an AI
+Notam Watch uses the **Model Context Protocol (MCP)** to connect an AI
 assistant to time-stamped FAA data and purpose-built aviation analysis tools. Instead of
 summarizing every available notice, it helps pilots and analysts identify what
 deserves attention first. It can lower the priority of notices that evidence
@@ -102,15 +102,15 @@ question is harder:
   schedule, terrain, or freshness evidence is incomplete?
 
 The difference between a large notice list and a useful briefing is context.
-NFS Airspace Watch combines that context before asking the model to explain it.
+Notam Watch combines that context before asking the model to explain it.
 
 ## The Solution
 
 The project has two user-facing components:
 
-1. **NFS MCP Server** — a standardized, read-only interface over live and
+1. **Notam Watch Service** — a standardized, read-only MCP interface over live and
    reference aviation data.
-2. **NFS Airspace Watch** — an analyst dashboard and AI assistant that uses the
+2. **Notam Watch** — an analyst dashboard and AI assistant that uses the
    MCP server, shows which tools were called, and applies the returned evidence
    to the map and priority queue.
 
@@ -182,9 +182,9 @@ flowchart LR
     NASR[FAA airports and aircraft reference] --> PIPE
     SUA[Special-use airspace] --> PIPE
     PIPE --> GOLD[(PostgreSQL / PostGIS gold layer)]
-    GOLD --> MCP[NFS MCP Server]
+    GOLD --> MCP[Notam Watch Service]
     MCP --> AGENT[AI agent]
-    AGENT --> UI[NFS Airspace Watch]
+    AGENT --> UI[Notam Watch]
     UI --> MAP[Map and priority queue]
     AGENT --> MLFLOW[MLflow traces and evaluation]
 ```

@@ -6,32 +6,26 @@ flight and why.** It checks the route, altitude, and timing against FAA notices
 
 Built for the **2026 GSA MCP Server and SI Agent Government Hackathon**.
 
-## What It Found
-
-> “I'm flying from JFK to Washington National at 30,000 feet. Which safety
-> notices matter most for this flight, and why?”
-
-In a November 18, 2026 replay, Notam Watch found four hazard areas that crossed
-the planned route. Three matched the flight's expected altitude and timing.
-The fourth stayed flagged for review: its height limit was measured from the
-ground, and without terrain data the tool couldn't tell whether the flight
-would pass through it. This was a replay, not a current flight briefing.
-
-## Does It Work?
-
-In the November 20, 2026 evaluation, the assistant selected the expected
-aviation tool on **all nine test questions**. That shows it chose the right tool
-for each question, not that every answer was correct.
-[Technical evaluation details (for engineers)](EVALUATION.md)
-
-## Why Trust It?
-
-- The assistant can look up aviation data, but it can't change operational records.
-- The tools report how current their data is and flag what they can't verify.
-- People make the final call. Notam Watch does not replace an official FAA
-  briefing, air traffic control, dispatch, or pilot judgment.
-
 ## For Judges: Source Review Guide
+
+**What Notam Watch adds:** It narrows a list of notices to what matters for a
+specific flight without hiding notices it can't resolve. The tools check route,
+altitude, and timing; the assistant explains why each notice matters.
+
+**Demo evidence:** In a November 18, 2026 replay of a JFK → DCA flight planned
+at 30,000 feet, four hazard areas crossed the route. Three matched the expected
+altitude and timing. Notam Watch kept the fourth flagged for review: its height
+limit was measured above ground, and without terrain data the tool couldn't
+determine whether the flight would pass through it. This was a historical
+replay, not a current flight briefing.
+
+**Evaluation evidence:** On November 20, 2026, the assistant selected the
+expected MCP capability on **9 of 9 questions**. This measures tool selection,
+not answer correctness. See the [technical evaluation details](EVALUATION.md).
+
+**Operational boundary:** The tools are read-only and report data freshness
+and uncertainty. Notam Watch does not replace an official FAA briefing, air
+traffic control, dispatch, or pilot judgment.
 
 The submitted PowerPoint, evaluation document, and video present the problem,
 demonstration, and measured results. This repository provides the implementation

@@ -32,7 +32,8 @@ from typing import Any
 import requests
 
 from nfs_ingest.config import settings
-from server.services.sua_schedule import PROHIBITED_DAY_VALUES, month_day
+from server.tool_resources.constants import PROHIBITED_DAY_VALUES
+from server.tool_resources.services.sua_schedule import month_day
 
 SAA_MEMBER = "Additional_Data/AIXM/SAA-AIXM_5_Schema/SaaSubscriberFile.zip"
 EARTH_RADIUS_NM = 3440.065

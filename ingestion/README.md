@@ -48,8 +48,9 @@ ingestion/
 
 Shared with the MCP server (imported from `src/server`): the base settings
 class and `.env` precedence (`server.config`), the Lakebase connection
-(`server.services.gold_db`) and the SUA timesheet day/date helpers
-(`server.services.sua_schedule`). The MCP server never imports `nfs_ingest`.
+(`server.tool_resources.services.gold_db`), and the SUA timesheet helpers and
+constants (`server.tool_resources.services.sua_schedule` and
+`server.tool_resources.constants`). The MCP server never imports `nfs_ingest`.
 
 ## Credentials and settings
 

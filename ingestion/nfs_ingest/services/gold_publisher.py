@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any
 
 from nfs_ingest.config import settings
+from server.tool_resources.services.gold_db import connect
 
 logger = logging.getLogger(__name__)
 
@@ -673,8 +674,6 @@ def _stream_rows(dataframe: Any, columns: list[str]):
 
 def publish_gold(spark: Any, *, apply_schema: bool = True) -> dict[str, Any]:
     """Refresh every gold table from silver in one Postgres transaction."""
-    from server.services.gold_db import connect
-
     spark.conf.set("spark.sql.session.timeZone", "UTC")
     published_at = datetime.now(UTC)
     sua_links = register_sua_links(spark)

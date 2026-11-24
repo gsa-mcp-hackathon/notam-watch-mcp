@@ -38,9 +38,9 @@ operational readiness. The recorded run did not include a model-only comparison.
 ## Automated Checks
 
 ```bash
-uv sync --group dev
-uv run pytest
-uv run ruff check .
+uv sync --locked --group dev --group ingestion
+uv run --no-sync pytest
+uv run --no-sync ruff check .
 ```
 
 The repository includes tests for tool contracts, query behavior, SQL rendering,

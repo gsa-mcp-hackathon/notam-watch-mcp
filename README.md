@@ -1,32 +1,35 @@
 # Notam Watch
 
-**An MCP server and analyst workspace that turns FAA flight and NOTAM data
-into prioritized, plain-language aviation safety information.**
+**Notam Watch helps pilots and analysts see which aviation notices matter to a
+flight and why.** It checks the route, altitude, and timing against FAA notices
+(NOTAMs), then explains what deserves attention in plain language.
 
 Built for the **2026 GSA MCP Server and SI Agent Government Hackathon**.
 
-> A pilot does not need every notice in the National Airspace System. They need
-> to know which notices matter to this flight, at this altitude, on this route,
-> at this time.
+## What It Found
 
-Notices to Air Missions (NOTAMs) communicate runway closures, temporary flight
-restrictions, unmanned aircraft activity, navigation outages, and other
-operational hazards. They are essential, but the volume, abbreviations, and lack
-of flight-specific context can make the most important notice difficult to find.
+> “I'm flying from JFK to Washington National at 30,000 feet. Which safety
+> notices matter most for this flight, and why?”
 
-Notam Watch uses the **Model Context Protocol (MCP)** to connect an AI
-assistant to time-stamped FAA data and purpose-built aviation analysis tools. Instead of
-summarizing every available notice, it helps pilots and analysts identify what
-deserves attention first. It can lower the priority of notices that evidence
-confirms are off route, outside the flight's altitude, or inactive at the
-relevant time, while keeping unresolved cases visible for human review.
+In a November 18, 2026 replay, Notam Watch found four hazard areas that crossed
+the planned route. Three matched the flight's expected altitude and timing.
+The fourth stayed flagged for review: its height limit was measured from the
+ground, and without terrain data the tool couldn't tell whether the flight
+would pass through it. This was a replay, not a current flight briefing.
 
-This is decision-support software. It does not replace an official FAA briefing,
-air traffic control, dispatch, or pilot judgment.
+## Does It Work?
 
-*The analyst workspace brings the map, priority queue, and plain-language MCP
-assistant into one view. The displayed data is a time-stamped replay, not
-current operational traffic.*
+In the November 20, 2026 evaluation, the assistant selected the expected
+aviation tool on **all nine test questions**. That shows it chose the right tool
+for each question, not that every answer was correct.
+[Technical evaluation details (for engineers)](EVALUATION.md)
+
+## Why Trust It?
+
+- The assistant can look up aviation data, but it can't change operational records.
+- The tools report how current their data is and flag what they can't verify.
+- People make the final call. Notam Watch does not replace an official FAA
+  briefing, air traffic control, dispatch, or pilot judgment.
 
 ## For Judges: Source Review Guide
 
@@ -204,48 +207,8 @@ Databricks ingestion pipeline runs separately from the MCP runtime.
 
 ## Testing and Evaluation
 
-### MLflow agent evaluation
-
-The application includes a nine-question mission-focused evaluation suite that
-runs through the real agent and MCP tools. It tests whether the system can:
-
-- Identify the most important notices for a planned flight.
-- Reduce noise using route and altitude evidence.
-- Prioritize arrival runway and approach impacts.
-- Find flights entering temporary or special-use airspace.
-- Separate confirmed altitude conflicts from altitude-unknown cases.
-- Identify route deviations without claiming unsupported causation.
-- Combine multiple MCP tools into a prioritized flight briefing.
-- Rank airport outages by operational impact.
-- Translate coded NOTAM text into plain language without changing its facts.
-
-MLflow records tool selection, tool-call budget, tool errors, response latency,
-complete responses, and trace identifiers. Answer and mission quality can be
-scored when the LLM judges are enabled and available.
-The UI exposes these results in the **Evaluate** modal so reviewers can inspect
-individual answers rather than relying only on aggregate scores.
-
-The documented nine-question run on November 20, 2026 recorded:
-
-- **9 of 9** mission questions completed.
-- **9 of 9** selected the expected MCP capability.
-- **9 of 9** stayed within the defined tool-call budget.
-- **0** failed evaluation cases.
-
-These structural agent-evaluation results were saved in MLflow in the local
-Docker continuity environment. They are structural results, not judged answer
-quality, operational certification, or a replacement for human aviation review.
-
-### Automated tests
-
-```bash
-uv sync --group dev
-uv run pytest
-uv run ruff check .
-```
-
-The repository includes tests for tool contracts, query behavior, SQL rendering,
-schedule and altitude logic, dashboard normalization, and ingestion behavior.
+See the [technical evaluation details](EVALUATION.md) for the nine-question
+evaluation, its scoring criteria, and instructions for running automated checks.
 
 ## Security and Operational Boundaries
 
